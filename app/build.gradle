@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myapplication'
+    namespace 'com.example.projectandroid'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.example.projectandroid"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -29,11 +29,21 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.android.material:material:1.4.0' // Thay thế phiên bản 1.5.0 bằng 1.4.0
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1' // Thay thế phiên bản 2.1.4 bằng 2.1.1
+    implementation 'com.google.firebase:firebase-firestore:24.2.0' // Thay thế phiên bản 24.1.0 bằng 24.2.0
+    implementation 'com.google.firebase:firebase-auth:21.2.0' // Thay thế phiên bản 21.1.0 bằng 21.2.0
+    implementation 'com.google.firebase:firebase-database:20.0.0' // Thay thế phiên bản 20.1.0 bằng 20.0.0
+    implementation 'com.google.android.gms:play-services-auth:20.2.0' // Thay thế phiên bản 20.6.0 bằng 20.2.0
+    implementation 'com.google.android.gms:play-services-maps:18.0.0' // Thay thế phiên bản 18.1.0 bằng 18.0.0
+    implementation 'com.google.firebase:firebase-storage:20.0.0' // Thay thế phiên bản 20.2.1 bằng 20.0.0
+    implementation 'com.karumi:dexter:6.2.2' // Thay thế phiên bản 6.2.3 bằng 6.2.2
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0' // Giữ nguyên phiên bản 0.1.0
+    implementation 'com.google.android.gms:play-services-location:19.0.0' // Thay thế phiên bản 21.0.1 bằng 19.0.0
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
