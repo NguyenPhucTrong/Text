@@ -1,4 +1,4 @@
-package com.example.projectandroid;
+package edu.csc.foodgojek;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,15 +11,21 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -27,8 +33,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-public class GGMap extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
-
+public class ggmap extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener  {
+Button btnchangeaddress;
     Boolean isPermissionGranted = false;
 
     int GPS_REQUEST_CODE = 9001;
@@ -40,7 +46,7 @@ public class GGMap extends AppCompatActivity implements OnMapReadyCallback, Goog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_ggmap);
 
         addControls();
         checkMyPermission();
@@ -86,13 +92,22 @@ public class GGMap extends AppCompatActivity implements OnMapReadyCallback, Goog
 
     public void addControls(){
 //        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        btnchangeaddress = findViewById(R.id.btn_change_address);
+        btnchangeaddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ggmap.this, ggmap.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkMyPermission() {
         Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                Toast.makeText(GGMap.this,"Permission Granted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ggmap.this,"Permission Granted",Toast.LENGTH_SHORT).show();
                 isPermissionGranted = true;
             }
 
@@ -113,7 +128,6 @@ public class GGMap extends AppCompatActivity implements OnMapReadyCallback, Goog
     }
 
     @SuppressLint("MissingPermission")
-    @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
